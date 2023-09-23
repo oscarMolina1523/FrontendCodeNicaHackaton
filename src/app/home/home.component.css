@@ -1,0 +1,228 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.center-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 10px;
+}
+
+.card-content {
+  border-radius: 25px;
+}
+
+.card-content img,
+.card-content video {
+  border-radius: 25px;
+  width: 350px;
+  height: 300px;
+}
+.heading-serif {
+  font-family: "heading-serif", serif; /* Reemplaza "heading-serif" con el nombre correcto de tu fuente */
+  font-size: 40px; /* Aumenta el tamaño de las letras */
+  font-weight: bold; /* Aumenta el grosor de las letras */
+  /* Otros estilos de texto, como color, etc. */
+}
+
+mat-card {
+  width: 500px;
+  height: auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Define una animación de desplazamiento */
+/* Define una animación de desplazamiento para el carrusel completo */
+
+/* Define la clase .active para mostrar la diapositiva actual */
+.carousel .slide.active {
+  transform: translateX(0);
+}
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clase para el título */
+.carousel-title {
+  margin-left: 25px;
+  font-family: sans-serif;/* Reemplaza "heading-serif" con el nombre correcto de tu fuente */
+  font-size: 25px; /* Aumenta el tamaño de las letras */
+  font-weight: bold; /* Aumenta el grosor de las letras */
+}
+
+.description{
+  font-family: sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.selectTutor{
+  font-family: sans-serif;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+
+.carousel {
+  width: 98%;
+  margin: 25px;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: transform 1s ease;
+  transform: translateX(0); /* Agrega esto para establecer la posición inicial */
+}
+.image-container {
+  position: relative; /* Asegura que el contenedor se posicione de forma relativa */
+  display: inline-block; /* Asegura que el contenedor se ajuste automáticamente al tamaño de la imagen */
+}
+.overlay-card {
+  position: absolute; /* Posiciona el mat-card de forma absoluta dentro del contenedor */
+  top: 50px; /* Puedes ajustar la posición vertical según tus necesidades */
+  left: 80px; /* Puedes ajustar la posición horizontal según tus necesidades */
+  background-color: white; /* Fondo semi-transparente del mat-card */
+  padding: 16px; /* Añade relleno según tus necesidades */
+}
+.mat-icon-button {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Estilo para los botones izquierdo y derecho */
+.mat-icon-button.left {
+  left: 10px;
+  border: 2px solid white;
+}
+
+.mat-icon-button.right {
+  right: 10px;
+  border: 2px solid white;
+}
+
+
+
+
+.slide {
+  display: inline-block;
+  white-space: normal;
+  margin-right: 20px;
+  transition: transform 10s ease-in-out;
+}
+
+
+.slide:last-child {
+  margin-right: 20px;
+}
+.slide:first-child {
+  animation: firstImageAnimation 1s ease; /* Aplica la animación a la primera imagen */
+}
+
+
+.slide img {
+  width: 100%;
+  height: 150px;
+  margin-right: 0;
+}
+
+
+
+
+
+/* Define una animación de desplazamiento para el carrusel completo */
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+.slide-container {
+  display: flex;
+}
+
+
+/* Clase reutilizable para botones circulares con iconos */
+.mat-icon-button {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* .slider {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */
+.slider {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Webkit */
+}
+
+.slider img {
+  flex: 0 0 100%;
+  width: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+}
+
+.slider .image-container {
+  flex: 0 0 auto;
+  width: 100%;
+  scroll-snap-align: center;
+  position: relative;
+}
+body {
+  margin: 0;
+}
+
+

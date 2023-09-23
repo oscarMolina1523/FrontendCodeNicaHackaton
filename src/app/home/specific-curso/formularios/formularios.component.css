@@ -1,0 +1,7 @@
+mat-card{
+  width: 800px;
+  margin: 0 auto;
+}
+.content {
+  margin-left: 10px; /* Margen de 10px desde el borde izquierdo */
+}

@@ -1,0 +1,60 @@
+<br>
+<style>
+  video {
+    width: 100%;
+    height: 500px;
+    /* Cambia esto al alto que desees */
+    object-fit: contain;
+  }
+</style>
+<div>
+  <video controls>
+    <source [src]="CursoVideo" type="video/mp4">
+    <source [src]="CursoVideo" type="video/webm">
+  </video>
+</div>
+<br>
+<div class="center-content">
+  <mat-tab-group class="mat-tab-group">
+    <mat-tab label="Contenido del curso">
+      <br>
+      <div class="center-content">
+        <mat-card class="card-content">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Primer Modulo
+                </mat-panel-title>
+                <mat-panel-description>
+                  Descripcion rapida del modulo
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Introduccion del modulo</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Parte 1</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Parte 2</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card>
+      </div>
+      <br>
+    </mat-tab>
+    <mat-tab label="Foro de discusion">
+      <br>
+      <app-comentarios></app-comentarios>
+      <br>
+    </mat-tab>
+    <mat-tab label="Formularios">
+      <br>
+      <app-formularios></app-formularios>
+      <br>
+    </mat-tab>
+  </mat-tab-group>
+  <br>
+</div>

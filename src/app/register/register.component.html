@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="left-side">
+    <div class="circle">
+      <img src="assets/videos/LogoHackaton.png" alt="miLogo" class="profile-image">
+    </div>
+    <mat-card class="mat-card2">
+      <br>
+      <p>"El aprendizaje es el camino que nos permite iluminar las mentes de las futuras generaciones.
+        Como maestros, nuestra sed de conocimiento nunca se agota,
+        porque cada día que aprendemos, inspiramos a otros a hacer lo mismo.
+        Sigamos siendo eternos estudiantes, porque al hacerlo,
+        continuamos siendo una fuente inagotable de inspiración y guía para nuestros alumnos."</p>
+    </mat-card>
+  </div>
+  <div class="right-side">
+    <div class="center-card">
+      <form fxLayout="column" fxlayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="guardarUsuario(f)">
+        <mat-card class="card-content" fxLayoutGap="10px">
+
+          <mat-form-field>
+            <mat-label>Ingrese su nombre</mat-label>
+            <input type="text" ngModel name="nombre" required placeholder="ingrese nombre" matInput>
+            <mat-error>Debe ingresar un nombre</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Ingrese sus Apellidos</mat-label>
+            <input type="text" ngModel name="apellidos" required placeholder="ingrese apellidos" matInput>
+            <mat-error>Debe ingresar sus apellidos</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Ingrese un UserName</mat-label>
+            <input type="text" ngModel name="userName" required placeholder="ingrese userName" matInput>
+            <mat-error>Debe ingresar un userName</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <mat-label>Ingresar E-Mail</mat-label>
+            <input type="email" matInput placeholder="example123@gmail.com" ngModel name="email" email required
+              #emailInput="ngModel">
+
+            <mat-error *ngIf="emailInput.hasError('required')">El email no debe estar vacio</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">Email invalido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field hintLabel="la contraseña debe ser mayor a 7 caracteres">
+            <mat-label>Ingresar Password</mat-label>
+            <input type="password" matInput placeholder="ingrese password" ngModel name="password" required minlength="7">
+            <mat-error>la contraseña debe tener mas de 7 caracteres</mat-error>
+          </mat-form-field>
+
+          <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Guardar</button>
+
+        </mat-card>
+      </form>
+    </div>
+
+  </div>
+</div>
+

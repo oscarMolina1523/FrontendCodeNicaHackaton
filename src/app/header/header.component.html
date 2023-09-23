@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <!-- <button mat-icon-button (click)="onMenuToggle()">
+    <mat-icon>menu</mat-icon>
+  </button> -->
+  <span>EDUNic</span>
+  <div class="mat-toolbar-spacer"></div>
+  <div>
+    <button mat-icon-button *ngIf="estadoUsuario" style="margin-left: 5px;" (click)="redirigirAHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="estadoUsuario" style="margin-left: 5px;" (click)="redirigirAPerfil()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-button *ngIf="!estadoUsuario" (click)="redirigirALogin()" style="margin-left: 5px;">
+      Login
+    </button>
+    <button mat-button *ngIf="!estadoUsuario" (click)="redirigirARegister()" style="margin-left: 5px;">
+      Register
+    </button>
+  </div>
+</mat-toolbar>

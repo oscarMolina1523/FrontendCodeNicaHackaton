@@ -1,0 +1,62 @@
+.center-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+mat-form-field{
+  width:300px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+mat-card{
+  width: 350px;
+  text-align: center;
+  margin-top: 30px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide en dos columnas iguales */
+  /* gap: 16px; */ /* Espacio entre las dos secciones */
+  height: 90vh;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.left-side {
+  flex: 1;
+  background-color:  #3f51b5; /* Estilos para la izquierda */
+
+}
+.circle {
+  background-color: white;
+  width: 250px; /* Ajusta el tamaño del círculo según tus necesidades */
+  height: 250px; /* Ajusta el tamaño del círculo según tus necesidades */
+  border-radius: 50%; /* Esto crea la forma circular */
+  overflow: hidden; /* Oculta cualquier contenido que se desborde del círculo */
+  margin: 0 auto; /* Centra el círculo horizontalmente en su contenedor */
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.profile-image {
+  width: 100%; /* Ajusta el ancho de la imagen al 100% del círculo */
+  height: 100%; /* Ajusta la altura de la imagen al 100% del círculo */
+  object-fit: cover; /* Ajusta la imagen para que cubra todo el círculo sin distorsión */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+}
+.mat-card2{
+  width: 500px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.right-side {
+  flex: 2;
+  background-color: white; /* Estilos para la derecha */
+
+}

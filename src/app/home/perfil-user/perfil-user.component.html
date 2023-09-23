@@ -1,0 +1,50 @@
+<br>
+<div class="center-card">
+  <div class="profile-image-container">
+    <img *ngIf="isImage" [src]="filePreview" alt="Vista Previa de Imagen">
+    <img *ngIf="!isImage"
+     src="https://i.pinimg.com/280x280_RS/e5/58/c5/e558c5192bd8400f48c52eef89e68ae1.jpg"
+     alt="picture1">
+  </div>
+</div>
+<br>
+<div class="center-card">
+  <button mat-raised-button color="primary" (click)="fileInput.click()">
+    <mat-icon>attach_file</mat-icon> Seleccionar Archivo
+  </button>
+  <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+</div>
+<br>
+<div class="card-container">
+  <div class="center-card">
+    <mat-card class="card-content">
+      <h2>Mis cursos</h2>
+      <br>
+      <img
+      src="https://static.vecteezy.com/system/resources/previews/012/697/234/non_2x/intranet-internet-network-connection-technology-to-share-confidential-company-information-in-template-hand-drawn-cartoon-flat-illustration-vector.jpg"
+      alt="Mi Imagen" (click)="MisCursos()">
+    </mat-card>
+  </div>
+  <div class="center-card">
+    <mat-card class="card-content">
+      <h2>Mis Datos</h2>
+      <br>
+      <mat-list>
+        <mat-list-item>Nombres:</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Apellidos</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>UserName:</mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+  <div class="center-card">
+    <mat-card class="card-content">
+      <h2>Biblioteca</h2>
+      <br>
+      <img
+      src="https://img.freepik.com/vector-gratis/concepto-evaluacion-credito-dibujado-mano-documentos_23-2149154259.jpg?w=2000"
+      alt="Mi Imagen 2">
+    </mat-card>
+  </div>
+</div>

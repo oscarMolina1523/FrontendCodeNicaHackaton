@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="left-side">
+    <div class="circle">
+      <img src="assets/videos/LogoHackaton.png" alt="miLogo" class="profile-image">
+    </div>
+    <mat-card class="mat-card2">
+      <br>
+      <p>"El aprendizaje es el camino que nos permite iluminar las mentes de las futuras generaciones.
+        Como maestros, nuestra sed de conocimiento nunca se agota,
+        porque cada día que aprendemos, inspiramos a otros a hacer lo mismo.
+        Sigamos siendo eternos estudiantes, porque al hacerlo,
+        continuamos siendo una fuente inagotable de inspiración y guía para nuestros alumnos."</p>
+    </mat-card>
+  </div>
+  <div class="right-side">
+    <div class="center-card">
+      <form fxLayout="column" fxlayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="loginUsuario(f)">
+        <mat-card class="card-content">
+          <mat-form-field>
+            <mat-label>E-Mail</mat-label>
+            <input type="email" placeholder="E-Mail" matInput name="email" ngModel required>
+            <mat-error>Porfavor ingresar un E-Mail</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" placeholder="Password" matInput name="password" ngModel required>
+            <mat-error>Porfavor ingresar un Password</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Enviar</button>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+
+

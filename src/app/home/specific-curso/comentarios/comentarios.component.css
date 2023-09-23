@@ -1,0 +1,41 @@
+.comment-item {
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: gray;
+  margin-right: 20px;
+  position: absolute;
+  left: 10px; /* Alineamos el círculo a la izquierda */
+  top: 50%; /* Centramos verticalmente el círculo */
+  transform: translateY(-50%); /* Ajustamos verticalmente */
+}
+
+.comment-text {
+  flex: 1;
+}
+
+mat-card{
+  width: 800px;
+  text-align: center;
+}
+.mat-card-content {
+  overflow: hidden;
+}
+
+.custom-input {
+  width: 500px; /* or any other value */
+}
+
+
+
+
+

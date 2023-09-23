@@ -1,0 +1,18 @@
+mat-card{
+  width: 800px;
+  text-align: center;
+
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-tab-group {
+  width: 1000px;
+}
+.align-left-checkbox {
+  display: flex;
+  align-items: flex-start;
+}
