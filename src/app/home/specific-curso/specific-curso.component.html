@@ -9,8 +9,8 @@
 </style>
 <div>
   <video controls>
-    <source [src]="CursoVideo" type="video/mp4">
-    <source [src]="CursoVideo" type="video/webm">
+    <source [src]="" type="video/mp4">
+    <source [src]="" type="video/webm">
   </video>
 </div>
 <br>
@@ -24,7 +24,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  Primer Modulo
+                  {{curso}}
                 </mat-panel-title>
                 <mat-panel-description>
                   Descripcion rapida del modulo

@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { UsuarioComponent } from './usuario.model';
 import { UsuarioLoginComponent } from './usuarioLogin.model';
 
@@ -9,53 +11,59 @@ import { UsuarioLoginComponent } from './usuarioLogin.model';
 })
 export class UsuarioSeguridadService {
 
+  baseUrl = environment.baseUrl;
   seguridadCambio = new Subject<boolean>();
+  private usuario!: UsuarioComponent;
   private usuarioAutenticado: boolean = false; // Variable para controlar la autenticación
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
   }
 
-  users: UsuarioComponent[] = [{
-    IdUsuario: '1',
-    NombreUsuario: 'Oscar',
-    ApellidoUsuario: 'Molina',
-    UserName: 'escanorMolina',
-    Password: '123456',
-    EmailUsuario: 'oscarmolina20032021@gmail.com',
-
-  },
-  {
-    IdUsuario: '2',
-    NombreUsuario: 'Luis',
-    ApellidoUsuario: 'Alberto',
-    UserName: 'inbañablePlus',
-    Password: '123456',
-    EmailUsuario: 'luisLadron15@gmail.com',
-
-  }];
-
-
   login(usrLogin: UsuarioLoginComponent) {
-    let foundUser = this.users.find(user => user.EmailUsuario === usrLogin.emailLogin
-      && user.Password === usrLogin.passwordLogin);
-    if (foundUser) {
-      this.usuarioAutenticado = true; // El usuario ha iniciado sesión
-      this.router.navigate(['/']);
-      this.seguridadCambio.next(true);
-    } else {
-      this.usuarioAutenticado = false; // El usuario no ha iniciado sesión
-      this.router.navigate(['/login']);
-    }
+    this.http.get<any>(this.baseUrl + 'usuario').subscribe((response) => {
+      if (response["$values"] && response["$values"].length > 0) {
+        const usuarios = response["$values"];
+        let usuarioEncontrado = null;
+        for (let i = 0; i < usuarios.length; i++) {
+          if (
+            usuarios[i].email === usrLogin.emailLogin &&
+            usuarios[i].contraseña === usrLogin.passwordLogin
+          ) {
+            usuarioEncontrado = usuarios[i];
+            break;
+          }
+        }
+        if (usuarioEncontrado) {
+          this.usuarioAutenticado = true;
+          this.seguridadCambio.next(true);
+          this.router.navigate(['/']);
+        } else {
+          console.log(usrLogin.emailLogin);
+          console.log(usrLogin.passwordLogin);
+          this.usuarioAutenticado = false;
+          this.router.navigate(['/login']);
+        }
+      } else {
+        console.log('La lista de usuarios está vacía');
+      }
+    });
   }
 
   registrarUsuario(usrRegister: UsuarioComponent) {
 
-    const nuevoId = (this.users.length + 1).toString();
-    usrRegister.IdUsuario = nuevoId;
-    this.users.push(usrRegister);
-    this.usuarioAutenticado = true;
-    this.seguridadCambio.next(true);
-    this.router.navigate(['/']);
+    this.http.post<UsuarioComponent>(this.baseUrl + 'usuario', usrRegister).subscribe((response) => {
+      this.usuario = {
+        Nombre: response.Nombre,
+        Apellido: response.Apellido,
+        UserName: response.UserName,
+        Contraseña: '',
+        Email: response.Email,
+        Rol: 'userComun'
+      };
+      this.usuarioAutenticado = true;
+      this.seguridadCambio.next(true);
+      this.router.navigate(['/']);
+    });
   };
 
   onSesion() {

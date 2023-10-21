@@ -1,25 +1,30 @@
 <br>
 <div class="center-card">
   <div class="profile-image-container">
-    <img *ngIf="isImage" [src]="filePreview" alt="Vista Previa de Imagen">
-    <img *ngIf="!isImage"
-     src="https://i.pinimg.com/280x280_RS/e5/58/c5/e558c5192bd8400f48c52eef89e68ae1.jpg"
-     alt="picture1">
+    <img [src]="perfil" alt="Vista Previa de Imagen" class="profile-image">
   </div>
 </div>
 <br>
 <div class="center-card">
   <button mat-raised-button color="primary" (click)="fileInput.click()">
-    <mat-icon>attach_file</mat-icon> Seleccionar Archivo
+    <mat-icon>attach_file</mat-icon> Seleccionar Foto
   </button>
   <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
 </div>
 <br>
+<!-- <input type="file" (change)="onVideoSelected($event)" accept="video/*">
+
+<div *ngIf="videoUrl">
+  <video width="320" height="240" controls>
+    <source [src]="videoUrl" type="video/mp4">
+    Tu navegador no soporta la reproducción de videos.
+  </video>
+</div> -->
 <div class="card-container">
   <div class="center-card">
     <mat-card class="card-content">
-      <h2>Mis cursos</h2>
       <br>
+      <h2>Mis cursos</h2>
       <img
       src="https://static.vecteezy.com/system/resources/previews/012/697/234/non_2x/intranet-internet-network-connection-technology-to-share-confidential-company-information-in-template-hand-drawn-cartoon-flat-illustration-vector.jpg"
       alt="Mi Imagen" (click)="MisCursos()">
@@ -30,7 +35,7 @@
       <h2>Mis Datos</h2>
       <br>
       <mat-list>
-        <mat-list-item>Nombres:</mat-list-item>
+        <mat-list-item>Nombres: Oscar Danilo Molina Mendieta</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>Apellidos</mat-list-item>
         <mat-divider></mat-divider>
@@ -40,11 +45,13 @@
   </div>
   <div class="center-card">
     <mat-card class="card-content">
-      <h2>Biblioteca</h2>
+      <h2>Crear Nuevo Curso</h2>
+      <p>toque el boton si desea crear un nuevo curso</p>
       <br>
-      <img
-      src="https://img.freepik.com/vector-gratis/concepto-evaluacion-credito-dibujado-mano-documentos_23-2149154259.jpg?w=2000"
-      alt="Mi Imagen 2">
+      <button mat-fab color="warn" (click)="abrirDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-card>
   </div>
+  <br>
 </div>

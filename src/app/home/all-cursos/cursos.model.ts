@@ -1,8 +1,14 @@
+import { ComentariosComponent } from './comentarios.model';
+import { InscripcionComponent } from './inscripcion.model';
+import { ModulosComponent } from './modulos-curso.model';
+
 export interface CursosComponent{
-  CursoId: string;
-  CursoTutor:string;
-  CursoName:string;
-  CursoUrl:string;
-  CursoVideoUrl:string;
-  CursoDescription:string;
+
+  nombreCurso:string;
+  descripcionCurso:string;
+  instructor:string;
+  modulosCurso:ModulosComponent[];
+  modulosComentario?:ComentariosComponent[];
+  cursoIncripcion?:InscripcionComponent[];
+  imagenCurso: {imagenUrl:string};
 }

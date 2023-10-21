@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CursosComponent } from '../all-cursos/cursos.model';
 
 @Component({
   selector: 'app-specific-curso',
@@ -7,20 +8,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./specific-curso.component.css']
 })
 export class SpecificCursoComponent implements OnInit {
-  panelOpenState=false;
-  touchedOpenState=false;
-  cursoUrl?:string;
-  cursoDescription?:string;
-  CursoVideo?:string;
+  panelOpenState = false;
+  touchedOpenState = false;
 
-  constructor(private route: ActivatedRoute) {}
+  curso:CursosComponent[]=[];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.cursoUrl = params['CursoUrl'];
-      this.cursoDescription = params['CursoDescription'];
-      this.CursoVideo=params['CursoVideoUrl'];
 
+      this.curso=[{nombreCurso:params['nombreCurso'],
+      descripcionCurso:params['descripcionCurso'],
+      instructor:params['instructor'],
+      modulosCurso:params['modulosCurso'],
+      modulosComentario:params['modulosComentario'],
+      cursoIncripcion:params['cursoIncripcion'],
+      imagenCurso:params['imagenCurso']
+      }]
     });
+
+    console.log(this.curso);
   }
 }

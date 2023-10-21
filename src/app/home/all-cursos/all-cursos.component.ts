@@ -8,9 +8,22 @@ import { CursosComponent } from './cursos.model';
   styleUrls: ['./all-cursos.component.css']
 })
 export class AllCursosComponent implements OnInit {
+
   cursosAll:CursosComponent[]=[];
+
   constructor(private cursosService:CursosService){}
   ngOnInit(): void {
-    this.cursosAll=this.cursosService.obtenerCursos();
+    this.cursosService.obtenerCursos().subscribe(
+      (data: any) => {
+        this.cursosAll = data.$values;
+        console.log(this.cursosAll);
+      },
+      (error) => {
+        console.error('Error al obtener cursos', error);
+      }
+    );
+
   }
+
+
 }

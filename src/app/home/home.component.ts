@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CursosComponent } from './all-cursos/cursos.model';
@@ -8,25 +7,37 @@ import { CursosService } from './cursos.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [
-    trigger('slideAnimation', [
-      transition('derecha <=> izquierda', [
-        style({ transform: 'translateX({{ from }}%)' }),
-        animate('2000ms linear', style({ transform: 'translateX({{ to }}%)' })),
-      ])
-    ])
-  ]
 })
 export class HomeComponent {
+
+  caruselItem = [{
+    imageSrc: 'assets/videos/acuarela.webp',
+    title: 'Howard G. Hendricks',
+    subtitle: '“La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón”',
+    content: 'Howard George Hendricks fue profesor en el Seminario Teológico de Dallas y orador para Promise Keepers.',
+  }, {
+
+    imageSrc: 'assets/videos/acuarela2.webp',
+    title: 'Karl A. Menninger',
+    subtitle: '“Lo que se les dé a los niños, los niños darán a la sociedad”',
+    content: 'Menninger fue un psiquiatra estadounidense y autor de numerosos libros entre los que destaca “Theory of Psychoanalytic Technique”',
+  },{
+    imageSrc:'assets/videos/acuarela3.webp',
+    title:'Jhon Dewey',
+    subtitle:'“La educación no es preparación para la vida; la educación es la vida en sí misma”',
+    content:'Jhon Dewey fue uno de los fundadores de la filosofía del pragmatismo, fue pedagogo, psicólogo y filósofo estadounidense'
+  },{
+    imageSrc:'assets/videos/acuarela4.webp',
+    title:'Benjamin Franklin',
+    subtitle:'“Una inversión en conocimiento paga el mejor interés”',
+    content:'Franklin es considerado uno de los Padres Fundadores de los Estados Unidos, fue político, científico e inventor de EEUU.'
+  }];
   mostrarFlechaIzquierda = false;
   mostrarFlechaDerecha = true;
 
   images: CursosComponent[] = [];
-  images2: CursosComponent[] = [];
-  animationParams: { from: number, to: number } = { from: 0, to: 100 };
-  direccion: 'izquierda' | 'derecha' = 'derecha';
   currentIndex = 0;
-  indiceIndex = 0;
+
 
   constructor(
     private cursosService: CursosService,
@@ -35,52 +46,17 @@ export class HomeComponent {
   ) { }
 
   ngOnInit(): void {
-    this.images = this.cursosService.obtenerCursos();
-    this.images2 = this.cursosService.obtenerCursos();
-  }
-
-  redirigirACursoEspecifico(imagen: any): void {
-    this.router.navigate(['/selection-curse'], {
-      relativeTo: this.route,
-      queryParams: {
-        CursoUrl: imagen.CursoUrl,
-        CursoDescription: imagen.CursoDescription,
-        CursoVideoUrl: imagen.CursoVideoUrl,
+    this.cursosService.obtenerCursos().subscribe(
+      (data: any) => {
+        this.images = data.$values;
+      },
+      (error) => {
+        console.error('Error al obtener cursos', error);
       }
-    });
+    );
   }
 
-  navegar(direccion: 'izquierda' | 'derecha'): void {
-    const numVisible = 5; // Número de imágenes visibles
-    if (direccion === 'izquierda' && this.currentIndex > 0) {
-      this.currentIndex -= 1;
-      this.direccion = 'izquierda';
-    } else if (direccion === 'derecha' && this.currentIndex < this.images.length - numVisible) {
-      this.currentIndex += 1;
-      this.direccion = 'derecha';
-    }
-  }
-
-  navegar2(direction: 'izquierda' | 'derecha'): void {
-    if (direction === 'izquierda' && this.indiceIndex > 0) {
-      this.indiceIndex -= 1;
-      this.direccion = 'izquierda';
-    } else if (direction === 'derecha' && this.indiceIndex < this.images2.length - 3) {
-      this.indiceIndex += 1;
-      this.direccion = 'derecha';
-    }
-  }
-
-  getAnimationState(index: number): string {
-    if (index === this.currentIndex) {
-      return 'derecha';
-    } else if (index === this.currentIndex + 2) {
-      return 'izquierda';
-    } else {
-      return '';
-    }
-  }
-
+  /*este es el codigo del slider de imagenes de la cabecera*/
   @ViewChild('slider', { static: true }) slider!: ElementRef;
 
   desplazarIzquierda() {

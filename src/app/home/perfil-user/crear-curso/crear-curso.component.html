@@ -1,0 +1,70 @@
+<form #f="ngForm" (ngSubmit)="guardarCurso(f)">
+  <h2 mat-dialog-title>Agregar Nuevo Curso</h2>
+  <mat-dialog-content>
+    <section fxLayoutAlign="center" style="margin-top: 10px; margin-bottom: 10px;">
+      <mat-card fxFlex="100%">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Nombre del Curso</mat-label>
+            <input matInput type="text" placeholder="ejem. Mil y una noches" required ngModel name="nombreCurso">
+            <mat-error>Debe ingresar el titulo del curso</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese descripcion del Curso</mat-label>
+            <input matInput type="text" placeholder="ejem. escrito en 1987" required ngModel name="descripcionCurso">
+            <mat-error>Debe ingresar la descripcion del curso</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Nombre del Instructor</mat-label>
+            <input matInput type="text" placeholder="ejem. Juan Jose Martinez" required ngModel name="instructor">
+            <mat-error>Debe ingresar un instructor</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Nombre del Modulo</mat-label>
+            <input matInput type="text" placeholder="ejem. Aprendiendo Office" required ngModel name="nombreModulo">
+            <mat-error>Debe ingresar un nombre para el Modulo</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese descripcion del Modulo</mat-label>
+            <input matInput type="text" placeholder="ejem. Correcto uso del Office" required ngModel name="descripcionModulo">
+            <mat-error>Debe ingresar una descripcion del Modulo</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Nombre de la Clase</mat-label>
+            <input matInput type="text" placeholder="ejem. Juan Jose Martinez" required ngModel name="nombreClase">
+            <mat-error>Debe ingresar un nombre de la clase</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese una descripcion de la clase</mat-label>
+            <input matInput type="text" placeholder="ejem. Juan Jose Martinez" required ngModel name="descripcionClase">
+            <mat-error>Debe ingresar una descripcion de la clase</mat-error>
+          </mat-form-field>
+          <div style="display: flex; align-items: center;">
+            <mat-form-field style="flex: 1;">
+              <mat-label>Seleccione el video de la clase</mat-label>
+              <input type="text" matInput readonly [value]="selectedVideoName">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="videoFileInput.click()">
+              <mat-icon>attach_file</mat-icon> Seleccionar Video
+            </button>
+            <input type="file" #videoFileInput (change)="onVideoSelected($event)" accept="video/*" style="display: none;">
+          </div>
+          <div style="display: flex; align-items: center;">
+            <mat-form-field style="flex: 1;">
+              <mat-label>Seleccione la imagen</mat-label>
+              <input type="text" matInput readonly [value]="selectedImageName">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="imageFileInput.click()">
+              <mat-icon>attach_file</mat-icon> Seleccionar Imagen
+            </button>
+            <input type="file" #imageFileInput (change)="onImageSelected($event)" accept="image/*" style="display: none;">
+          </div>
+        </div>
+      </mat-card>
+    </section>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Cerrar</button>
+    <button mat-button type="submit">Guardar</button>(
+  </mat-dialog-actions>
+</form>

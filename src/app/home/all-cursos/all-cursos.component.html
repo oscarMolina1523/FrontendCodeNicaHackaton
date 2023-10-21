@@ -2,9 +2,10 @@
 <div class="card-container">
   <div class="center-card" *ngFor="let cr of cursosAll">
     <mat-card class="card-content">
-      <h2>{{cr.CursoName}}</h2>
-      <h2>{{cr.CursoDescription}}</h2>
-      <img [src]="cr.CursoUrl" alt="" />
+      <h2>{{cr?.nombreCurso}}</h2>
+      <h2>{{cr?.descripcionCurso}}</h2>
+      <p>{{cr?.instructor}}</p>
+      <img [src]="cr.imagenCurso.imagenUrl" alt="aqui va la imagen" />
     </mat-card>
   </div>
 </div>

@@ -1,0 +1,17 @@
+<div class="carousel-container">
+  <button *ngIf="!isDisabled('izquierda')" mat-fab color="primary" class="mat-icon-button left" (click)="navegar('izquierda')" [disabled]="isDisabled('izquierda')">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <div class="carousel">
+    <ng-container *ngFor="let imagen of images; let i = index">
+      <div *ngIf="i >= currentIndex && i < currentIndex + 5" class="slide">
+        <img [src]="imagen.imagenCurso.imagenUrl" alt="Imagen {{ i + 1 }}" (click)="redirigirACursoEspecifico(imagen)" />
+        <h3 class="description">{{imagen.descripcionCurso}}</h3>
+        <h3 class="selectTutor">{{imagen.instructor}}</h3>
+      </div>
+    </ng-container>
+  </div>
+  <button *ngIf="!isDisabled('derecha')" mat-fab color="primary" class="mat-icon-button right" (click)="navegar('derecha')" [disabled]="isDisabled('derecha')">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

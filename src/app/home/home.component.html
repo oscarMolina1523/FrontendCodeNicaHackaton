@@ -1,68 +1,23 @@
 <br>
-<div #slider class='slider'>
+<div class="carousel-container">
   <button mat-fab color="primary" class="mat-icon-button left" (click)="desplazarIzquierda()" *ngIf="mostrarFlechaIzquierda">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
   <button mat-fab color="primary" class="mat-icon-button right" (click)="desplazarDerecha()" *ngIf="mostrarFlechaDerecha">
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>
-  <div class="image-container">
-    <img src="assets/videos/acuarela.webp" loading="lazy"/>
-    <mat-card class="overlay-card">
-      <h1 class="heading-serif">Howard G. Hendricks</h1>
-      <p>“La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón” </p>
-      <p>Howard George Hendricks fue profesor en el Seminario Teológico de Dallas y orador para Promise Keepers.</p>
-    </mat-card>
-  </div>
-  <div class="image-container">
-    <img src="assets/videos/acuarela2.webp" loading="lazy"/>
-    <mat-card class="overlay-card">
-      <h1 class="heading-serif">Karl A. Menninger</h1>
-      <p>“Lo que se les dé a los niños, los niños darán a la sociedad”</p>
-      <p>Menninger fue un psiquiatra estadounidense y autor de numerosos libros entre los que destaca “Theory of Psychoanalytic Technique”</p>
-    </mat-card>
-  </div>
-  <div class="image-container">
-    <img src="assets/videos/acuarela3.webp" loading="lazy"/>
-    <mat-card class="overlay-card">
-      <h1 class="heading-serif">Jhon Dewey</h1>
-      <p>“La educación no es preparación para la vida; la educación es la vida en sí misma”</p>
-      <p>Jhon Dewey fue uno de los fundadores de la filosofía del pragmatismo, fue pedagogo, psicólogo y filósofo estadounidense</p>
-    </mat-card>
-  </div>
-  <div class="image-container">
-    <img src="assets/videos/acuarela4.webp" loading="lazy"/>
-    <mat-card class="overlay-card">
-      <h1 class="heading-serif">Benjamin Franklin</h1>
-      <p>“Una inversión en conocimiento paga el mejor interés”</p>
-      <p>Franklin es considerado uno de los Padres Fundadores de los Estados Unidos, fue político, científico e inventor de EEUU.</p>
-    </mat-card>
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-<div>
-  <h1 class="carousel-title">Recomendaciones para ti</h1>
-</div>
-<div class="carousel-container">
-  <button mat-fab color="primary" class="mat-icon-button left" (click)="navegar('izquierda')">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <div class="carousel">
-    <ng-container *ngFor="let imagen of images; let i = index">
-      <div *ngIf="i >= currentIndex && i < currentIndex + 5" class="slide slide-transition"
-      [@slideAnimation]="{ value: getAnimationState(i), params: { from: 0, to: 100 } }">
-        <img [src]="imagen.CursoUrl" alt="Imagen {{ i + 1 }}" (click)="redirigirACursoEspecifico(imagen)" />
-        <h3 class="description">{{imagen.CursoDescription}}</h3>
-        <h3 class="selectTutor">{{imagen.CursoTutor}}</h3>
+  <div #slider class='slider'>
+    <ng-container *ngFor="let item of caruselItem; let i = index">
+      <div class="image-container">
+        <img [src]="item.imageSrc" />
+        <mat-card class="overlay-card">
+          <h1 class="heading-serif">{{item.title}}</h1>
+          <p>{{item.subtitle}}</p>
+          <p>{{item.content}}</p>
+        </mat-card>
       </div>
     </ng-container>
   </div>
-  <button mat-fab color="primary" class="mat-icon-button right" (click)="navegar('derecha')">
-    <mat-icon>keyboard_arrow_right</mat-icon>
-  </button>
 </div>
 
 <br>
@@ -71,38 +26,15 @@
 <div>
   <h1 class="carousel-title">Mas populares del mes</h1>
 </div>
-<div class="carousel-container">
-  <button mat-fab color="primary" class="mat-icon-button left" (click)="navegar2('izquierda')">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <div class="carousel">
-    <ng-container *ngFor="let imagen of images2; let i = index">
-      <div *ngIf="i >= indiceIndex && i < indiceIndex + 5" class="slide slide-transition"
-      [@slideAnimation]="{ value: getAnimationState(i), params: { from: 0, to: 100 } }">
-        <img [src]="imagen.CursoUrl" alt="Imagen {{ i + 1 }}" (click)="redirigirACursoEspecifico(imagen)" />
-        <h3 class="description">{{imagen.CursoDescription}}</h3>
-        <h3 class="selectTutor">{{imagen.CursoTutor}}</h3>
-      </div>
-    </ng-container>
-  </div>
-  <button mat-fab color="primary" class="mat-icon-button right" (click)="navegar2('derecha')">
-    <mat-icon>keyboard_arrow_right</mat-icon>
-  </button>
+<app-base-carusel [images]="images"></app-base-carusel>
+<br>
+<br>
+<br>
+<div>
+  <h1 class="carousel-title">Recomendaciones para ti</h1>
 </div>
-
-
-<!-- <div class="carousel">
-  <div class="slide" *ngFor="let image of images">
-    <img [src]="image.CursoUrl" alt="" (click)="redirigirACursoEspecifico()">
-  </div>
-</div> -->
+<app-base-carusel [images]="images"></app-base-carusel>
 
 
 
-<!-- <div class="card-container">
-  <div class="center-card" *ngFor="let image of images">
-    <mat-card class="card-content">
-      <img [src]="image.CursoUrl" alt="" />
-    </mat-card>
-  </div>
-</div> -->
+

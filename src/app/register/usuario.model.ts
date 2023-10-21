@@ -1,8 +1,8 @@
 export interface UsuarioComponent{
-  IdUsuario:string;
-  NombreUsuario:string;
-  ApellidoUsuario:string;
+  Nombre:string;
+  Apellido:string;
   UserName:string;
-  Password:string;
-  EmailUsuario:string;
+  Contraseña:string;
+  Email:string;
+  Rol:string;
 }
