@@ -13,8 +13,8 @@ export class ComentariosComponent implements OnInit {
   commentItemClass: string = 'comment-item';
 
   ngOnInit(): void {
-    this.comments = ['El pollo, mas si esta en el plato jjjj'
-    , 'El conejo, mejor asado que en sopa'];
+    this.comments = ['Profesor podria explicarlo en ingles?'
+    , 'Claro joven con mucho gusto'];
   }
 
   addComment(): void {

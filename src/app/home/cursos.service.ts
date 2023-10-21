@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CursosComponent } from './all-cursos/cursos.model';
+import { Cursos2Component } from './all-cursos/cursos2.model';
 
 @Injectable({
   'providedIn': 'root'
@@ -10,7 +11,7 @@ import { CursosComponent } from './all-cursos/cursos.model';
 export class CursosService {
 
   baseUrl = environment.baseUrl;
-  private cursos!: CursosComponent;
+  private cursos!: Cursos2Component;
 
   constructor(private http: HttpClient) { }
 
@@ -18,16 +19,16 @@ export class CursosService {
     return this.http.get<CursosComponent>(this.baseUrl + 'cursos');
   }
 
-  crearCurso(cursoRegister: CursosComponent) {
-    this.http.post<CursosComponent>(this.baseUrl + 'crearCurso', cursoRegister).subscribe((response) => {
+  crearCurso(cursoRegister: Cursos2Component) {
+    this.http.post<Cursos2Component>(this.baseUrl + 'crearCurso', cursoRegister).subscribe((response) => {
       this.cursos = {
-        nombreCurso: 'azul',
-        descripcionCurso: 'moreno',
-        instructor: 'negro',
-        modulosCurso: [{nombreModulo:'banano',descripcionModulo:'rojo', clasesModulo:[{nombreClase:'nada',descripcion:'cacao',urlVideo:'azul'}]}],
-        modulosComentario: [{nombreUsuario:'', textoUsuario:''}],
-        cursoIncripcion: [{inscripcionUsuario:''}],
-        imagenCurso: {imagenUrl:''},
+        nombreCurso: response.nombreCurso,
+        descripcionCurso: response.descripcionCurso,
+        instructor: response.instructor,
+        modulosCurso: response.modulosCurso,
+        modulosComentario: response.modulosComentario,
+        cursoIncripcion: response.cursoIncripcion,
+        imagenCurso:response.imagenCurso,
       };
 
       console.log(this.cursos.nombreCurso);

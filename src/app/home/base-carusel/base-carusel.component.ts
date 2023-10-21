@@ -24,11 +24,12 @@ export class BaseCaruselComponent {
   redirigirACursoEspecifico(imagen: CursosComponent): void {
     this.router.navigate(['/selection-curse'], {
       relativeTo: this.route,
+      state: { imagen },
       queryParams: {
         nombreCurso: imagen.nombreCurso,
         descripcionCurso: imagen.descripcionCurso,
         instructor: imagen.instructor,
-        modulosCurso: imagen.modulosCurso,
+        modulosCurso: JSON.stringify(imagen.modulosCurso),
         modulosComentario: imagen.modulosComentario,
         cursoIncripcion: imagen.cursoIncripcion,
         imagenCurso: imagen.imagenCurso,

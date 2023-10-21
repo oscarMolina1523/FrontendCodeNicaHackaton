@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { getDownloadURL, getStorage, ref, uploadBytes, } from 'firebase/storage';
-import { CursosComponent } from '../../all-cursos/cursos.model';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { Cursos2Component } from '../../all-cursos/cursos2.model';
 import { CursosService } from '../../cursos.service';
 
 @Component({
@@ -22,54 +22,46 @@ export class CrearCursoComponent {
   videoUrl: string | null = null;
 
   async onVideoSelected(event: any): Promise<void> {
-    this.videoSelected = event.target.files[0];
-
-    if (this.videoSelected) {
-      const storage = getStorage();
-      const videoRef = ref(storage, `videos/${this.videoSelected.name}`);
-
-      try {
-        // Subir el video a Firebase Storage
-        await uploadBytes(videoRef, this.videoSelected);
-
-        // Obtener la URL del video y asignarla a videoUrl
-        const url = await getDownloadURL(videoRef);
-        this.videoUrl = url;
-        if(url!=null){
-          this.selectedVideoName = this.videoSelected.name;
-        }
-        else{
-          this.selectedVideoName='';
-        }
-      } catch (error) {
-        console.error('Error al subir o obtener la URL del video:', error);
+    const file = event.target.files[0];
+    const videoRef = ref(this.storage, `videos/${file.name}`);
+    try {
+      await uploadBytes(videoRef, file);
+      const url = await getDownloadURL(videoRef);
+      if (url != null) {
+        this.selectedVideoName = url;
+        console.log(url); // Aquí obtendrás la URL pública del video subido
+      } else {
+        this.selectedVideoName = '';
       }
+    } catch (error) {
+      console.error('Error al subir o obtener la URL del video:', error);
     }
   }
+
+
 
 
   onImageSelected($event: any): void {
     const file = $event.target.files[0];
     const imgRef = ref(this.storage, `curso/${file.name}`);
-    uploadBytes(imgRef, file)
-      .then(() => getDownloadURL(imgRef)) // Espera a que la carga esté completa antes de obtener la URL
+    uploadBytes(imgRef, file).then(() => getDownloadURL(imgRef))
       .then(url => {
-        if (url != null) {
+        if(url!=null){
           this.selectedImageName = url;
-          console.log(url); // Aquí obtendrás la URL pública del archivo subido
-        } else {
-          this.selectedImageName = '';
+          console.log(url);
+        }
+        else{
+          this.selectedImageName='';
         }
       })
       .catch(error => console.log(error));
   }
 
-
   guardarCurso(form: NgForm) {
-    console.log(form.value.nombreCurso);
 
-    if (form.valid ) {
-      console.log(form.value.nombreCurso);
+
+    if (form.valid && this.selectedImageName!=null && this.selectedVideoName!=null) {
+
       const nameCurso: string = form.value.nombreCurso;
       const descCurso: string = form.value.descripcionCurso;
       const inst: string = form.value.instructor;
@@ -81,9 +73,9 @@ export class CrearCursoComponent {
       const imagen: string = this.selectedImageName;
 
 
-      const Cursos: CursosComponent = {
+      const Cursos: Cursos2Component = {
         nombreCurso: nameCurso, descripcionCurso: descCurso, instructor: inst,
-        modulosCurso: [{nombreModulo: nombre, descripcionModulo: descripcion, clasesModulo: [{ nombreClase: nameclase, descripcion: descclase, urlVideo: video}]}], imagenCurso:{imagenUrl:imagen},
+        modulosCurso: [{nombreModulo: nombre, descripcionModulo: descripcion, clasesModulo: [{ nombreClase: nameclase, descripcion: descclase, urlVideo: video}]}], imagenCurso: [{imagenUrl:imagen}],
         modulosComentario: [{nombreUsuario:'',  textoUsuario:''}],
         cursoIncripcion: [{inscripcionUsuario:''}],
       };

@@ -7,9 +7,11 @@
     object-fit: contain;
   }
 </style>
-<div>
+<div >
+  <button *ngIf="sub!=false" mat-raised-button color="primary" style="margin-right: 20px; margin-left: auto;" (click)="cambiar()">Suscribirme</button>
+  <br>
   <video controls>
-    <source [src]="" type="video/mp4">
+    <source [src]="video" type="video/mp4">
     <source [src]="" type="video/webm">
   </video>
 </div>
@@ -24,26 +26,75 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  {{curso}}
+                  Primer Modulo
                 </mat-panel-title>
                 <mat-panel-description>
-                  Descripcion rapida del modulo
+                  INtroduccion, dando los primeros pasos como un bebè
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="align-left-checkbox">
                 <mat-checkbox color="primary">Introduccion del modulo</mat-checkbox>
               </div>
               <div class="align-left-checkbox">
-                <mat-checkbox color="primary">Parte 1</mat-checkbox>
+                <mat-checkbox color="primary">Que aprenderas en este curso?</mat-checkbox>
               </div>
               <div class="align-left-checkbox">
-                <mat-checkbox color="primary">Parte 2</mat-checkbox>
+                <mat-checkbox color="primary">Motivandonos a continuar por mas</mat-checkbox>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-card>
       </div>
-      <br>
+      <div class="center-content">
+        <mat-card class="card-content">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Segundo Modulo
+                </mat-panel-title>
+                <mat-panel-description>
+                  Convirtiendonos en maestros de los demas
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Repaso del anterior curso</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Prueba periodica del mòdulo</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Avanzando por mas saber y conocimiento</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card>
+      </div>
+      <div class="center-content">
+        <mat-card class="card-content">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Tercer Modulo
+                </mat-panel-title>
+                <mat-panel-description>
+                  Que aprenderemos juntos de este bello mundo?
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Especializacion para ser mejores que antes</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Avanza sin detenerte</mat-checkbox>
+              </div>
+              <div class="align-left-checkbox">
+                <mat-checkbox color="primary">Gracias por llegar hasta el final</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card>
+      </div>
     </mat-tab>
     <mat-tab label="Foro de discusion">
       <br>
